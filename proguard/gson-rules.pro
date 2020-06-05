@@ -1,0 +1,5 @@
+-keepattributes Signature
+-keepattributes *Annotation*
+-keep class com.google.gson.** { *; }
+-keep public class com.google.gson.** {public private protected *;}
+-dontwarn sun.misc.**

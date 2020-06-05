@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyCleanKotlinArchitecture</string>
+    <!-- ERROR -->
+    <string name="error_generic">An error has occurred</string>
+    <string name="error_persistence">Persistence data error</string>
+    <string name="error_no_connection">No connection</string>
+    <!-- VIEW -->
+    <string name="error_view_oops">Oops</string>
+    <string name="error_view_retry">RETRY</string>
+    <string name="menu_link">Link</string>
+</resources>

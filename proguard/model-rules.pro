@@ -1,0 +1,2 @@
+-keep class com.mikhaellopez.domain.model.** { *; }
+-keep class com.mikhaellopez.data.net.dto.** { *; }

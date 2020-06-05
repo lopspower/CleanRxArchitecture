@@ -1,0 +1,99 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'com.adarshr.test-logger'
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    defaultConfig {
+        applicationId "com.mikhaellopez.mycleankotlinarchitecture"
+        targetSdkVersion androidTargetSdkVersion
+        minSdkVersion androidMinSdkVersion
+        versionCode androidVersionCode
+        versionName androidVersionName
+        multiDexEnabled true
+        testInstrumentationRunner packageAndroidJUnitRunner
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    signingConfigs {
+        release {
+            storeFile file('keystore')
+            keyAlias 'alias'
+            keyPassword 'password'
+            storePassword 'password'
+        }
+    }
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-DEBUG'
+        }
+        release {
+            signingConfig signingConfigs.release
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt')
+        }
+        // For Android Test
+        debugTest {
+            initWith(debug)
+            minifyEnabled false
+        }
+        testBuildType 'debugTest'
+    }
+    lintOptions {
+        disable 'ContentDescription'
+    }
+}
+
+dependencies {
+    // MODULE
+    implementation project(':data')
+    implementation project(':domain')
+
+    // KOTLIN
+    implementation kotlinStdlib
+    // ANDROIDX
+    implementation androidXAppCompat
+    implementation androidXPreference
+    implementation androidXRecyclerView
+    implementation androidXSwipeRefresh
+    implementation materialDesign
+    implementation constraintLayout
+    implementation multidex
+    // RX
+    implementation rxAndroid
+    implementation rxKotlin
+    implementation rxBinding
+    implementation rxBindingSwipeRefreshlayout
+    // CODE GENERATION
+    implementation dagger
+    kapt daggerCompiler
+
+    // DEBUG TOOLS
+    implementation timber
+    implementation stetho
+
+    // TEST
+    testImplementation junit
+    testImplementation mockitoInline
+    testImplementation mockitoKotlin
+
+    // ANDROID TEST
+    androidTestImplementation multidexInstrumentation
+    androidTestImplementation androidXTestRunner
+    androidTestImplementation androidXTestRules
+    androidTestImplementation espressoCore
+    androidTestImplementation espressoIntents
+    androidTestImplementation espressoContrib
+
+    // DEPENDENCY CHECK STRATEGY
+    dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
+}

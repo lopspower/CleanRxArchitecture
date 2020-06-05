@@ -1,0 +1,3 @@
+-keep class com.facebook.stetho.** { *; }
+-keep interface com.facebook.stetho.** { *; }
+-dontwarn com.facebook.stetho..**

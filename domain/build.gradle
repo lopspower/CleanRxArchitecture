@@ -1,0 +1,22 @@
+apply plugin: 'kotlin'
+apply plugin: 'idea'
+apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'com.adarshr.test-logger'
+
+dependencies {
+    // KOTLIN
+    implementation kotlinStdlib
+    // RX
+    implementation rxJava
+    implementation rxKotlin
+    // CODE GENERATION
+    implementation dagger
+
+    // TEST
+    testImplementation junit
+    testImplementation mockitoInline
+    testImplementation mockitoKotlin
+
+    // DEPENDENCY CHECK STRATEGY
+    dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
+}

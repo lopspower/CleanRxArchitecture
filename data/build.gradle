@@ -1,0 +1,77 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.github.ben-manes.versions'
+apply plugin: 'com.adarshr.test-logger'
+
+android {
+    compileSdkVersion androidCompileSdkVersion
+    defaultConfig {
+        minSdkVersion androidMinSdkVersion
+        testInstrumentationRunner packageAndroidJUnitRunner
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildTypes {
+        debug {
+            minifyEnabled true
+            consumerProguardFiles modelRules, supportRules, apacheRules, gsonRules, okhttp3Rules, retrofit2Rules, stethoRules
+        }
+        release {
+            minifyEnabled true
+            consumerProguardFiles modelRules, supportRules, apacheRules, gsonRules, okhttp3Rules, retrofit2Rules, stethoRules
+        }
+        // For Android Test
+        debugTest {
+            initWith(debug)
+            minifyEnabled false
+        }
+        testBuildType 'debugTest'
+    }
+}
+
+dependencies {
+    // MODULE
+    implementation project(':domain')
+
+    // KOTLIN
+    implementation kotlinStdlib
+    // SUPPORT
+    implementation androidXCore
+    // COMPONENTS
+    implementation room
+    kapt roomCompiler
+    // DAGGER
+    implementation dagger
+    kapt daggerCompiler
+    // RX
+    implementation rxAndroid
+    implementation rxJava
+    implementation rxKotlin
+    // WEBSERVICES
+    implementation retrofitConverterGson
+    implementation retrofitAdapterRxJava
+
+    // DEBUG TOOLS
+    implementation timber
+    implementation stethoOkHttp
+    debugImplementation chuckDebug
+    debugTestImplementation chuckRelease
+    releaseImplementation chuckRelease
+
+    // TEST
+    testImplementation junit
+    testImplementation androidXTestRunner
+    testImplementation mockitoInline
+    testImplementation mockitoKotlin
+
+    // ANDROID TEST
+    androidTestImplementation androidXTestRunner
+    androidTestImplementation androidXTestJunit
+    androidTestImplementation espressoCore
+
+    // DEPENDENCY CHECK STRATEGY
+    dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
+}

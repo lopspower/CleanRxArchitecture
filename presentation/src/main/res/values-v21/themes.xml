@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Base.Theme" parent="Base.V21.Theme" />
+
+    <style name="Base.V21.Theme" parent="Base.V1.Theme">
+        <item name="android:navigationBarColor">@color/primary</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+    </style>
+
+    <style name="Splash.Theme" parent="Splash.V21.Theme" />
+
+    <style name="Splash.V21.Theme" parent="Splash.V1.Theme">
+        <item name="android:statusBarColor">@color/background</item>
+    </style>
+
+</resources>
