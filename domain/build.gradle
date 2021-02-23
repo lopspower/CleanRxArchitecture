@@ -18,5 +18,5 @@ dependencies {
     testImplementation mockitoKotlin
 
     // DEPENDENCY CHECK STRATEGY
-    dependencyUpdates.resolutionStrategy = dependencyUpdatesStrategy
+    dependencyUpdates.resolutionStrategy dependencyUpdatesStrategy
 }
