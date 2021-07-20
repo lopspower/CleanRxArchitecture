@@ -5,7 +5,7 @@ import io.reactivex.rxjava3.core.SingleSource
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 
 /**
- * Copyright (C) 2020 Mikhael LOPEZ
+ * Copyright (C) 2021 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  * Imperative statements expressed as Single operators.
  * inspiration from https://github.com/akarnokd/RxJava2Extensions

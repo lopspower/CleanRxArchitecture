@@ -3,9 +3,11 @@ package com.mikhaellopez.presentation.scenes.repo
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import com.mikhaellopez.presentation.R
+import com.mikhaellopez.presentation.databinding.ActivityLayoutToLoadFragmentBinding
 import com.mikhaellopez.presentation.extensions.addFragment
 import com.mikhaellopez.presentation.extensions.enableToolbar
 import com.mikhaellopez.presentation.extensions.getLongExtra
@@ -13,7 +15,7 @@ import com.mikhaellopez.presentation.extensions.getStringExtra
 import com.mikhaellopez.presentation.scenes.base.view.ABaseActivity
 import io.reactivex.rxjava3.subjects.PublishSubject
 
-class RepoActivity : ABaseActivity(R.layout.activity_layout_to_load_fragment) {
+class RepoActivity : ABaseActivity<ActivityLayoutToLoadFragmentBinding>() {
 
     companion object {
         private const val EXTRA_REPO_ID = "extra_repo_id"
@@ -35,6 +37,10 @@ class RepoActivity : ABaseActivity(R.layout.activity_layout_to_load_fragment) {
 
     // Intent
     internal val intentActionLink = PublishSubject.create<Unit>()
+
+    // View Binding
+    override val bindingInflater: (LayoutInflater) -> ActivityLayoutToLoadFragmentBinding
+        get() = { inflater -> ActivityLayoutToLoadFragmentBinding.inflate(inflater) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

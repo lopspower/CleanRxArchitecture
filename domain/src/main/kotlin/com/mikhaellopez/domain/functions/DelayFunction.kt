@@ -8,7 +8,7 @@ import io.reactivex.rxjava3.functions.Function
 import java.util.concurrent.TimeUnit
 
 /**
- * Copyright (C) 2020 Mikhael LOPEZ
+ * Copyright (C) 2021 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  * [Function] that adds a delay to receiving the onComplete when a [Single] return an error
  */

@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 /**
- * Copyright (C) 2020 Mikhael LOPEZ
+ * Copyright (C) 2021 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  * Abstract class representing a Presenter in a model view presenter (MVI) pattern.
  */

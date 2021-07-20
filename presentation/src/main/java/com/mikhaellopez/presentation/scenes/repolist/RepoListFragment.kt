@@ -1,21 +1,21 @@
 package com.mikhaellopez.presentation.scenes.repolist
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.jakewharton.rxbinding4.swiperefreshlayout.refreshes
 import com.jakewharton.rxbinding4.view.clicks
 import com.mikhaellopez.data.helper.TimberWrapper
 import com.mikhaellopez.domain.model.Repo
-import com.mikhaellopez.presentation.R
+import com.mikhaellopez.presentation.databinding.RepoListFragmentBinding
 import com.mikhaellopez.presentation.scenes.base.view.ABaseDataFragment
 import com.mikhaellopez.presentation.scenes.base.view.ContentState
 import com.mikhaellopez.presentation.scenes.base.view.LoadingState
 import io.reactivex.rxjava3.core.Observable
-import kotlinx.android.synthetic.main.error_layout.*
-import kotlinx.android.synthetic.main.repo_list_fragment.*
 import javax.inject.Inject
 
-class RepoListFragment : ABaseDataFragment(R.layout.repo_list_fragment), RepoListView {
+class RepoListFragment : ABaseDataFragment<RepoListFragmentBinding>(), RepoListView {
 
     companion object {
         fun newInstance(): RepoListFragment = RepoListFragment()
@@ -24,9 +24,15 @@ class RepoListFragment : ABaseDataFragment(R.layout.repo_list_fragment), RepoLis
     @Inject
     lateinit var presenter: RepoListPresenter
 
+    // Properties
     private fun getParam() = "lopspower"
-
     private val repoAdapter = ReposAdapter()
+
+    // View Binding
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> RepoListFragmentBinding
+        get() = { inflater, parent, attachToParent ->
+            RepoListFragmentBinding.inflate(inflater, parent, attachToParent)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +55,8 @@ class RepoListFragment : ABaseDataFragment(R.layout.repo_list_fragment), RepoLis
     }
 
     private fun initView() {
-        recyclerView.setHasFixedSize(true)
-        recyclerView.adapter = repoAdapter
+        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.adapter = repoAdapter
     }
 
     //region INTENTS
@@ -58,10 +64,10 @@ class RepoListFragment : ABaseDataFragment(R.layout.repo_list_fragment), RepoLis
         Observable.just(getParam())
 
     override fun intentRefreshData(): Observable<String> =
-        swipeRefreshLayout.refreshes().map { getParam() }
+        binding.swipeRefreshLayout.refreshes().map { getParam() }
 
     override fun intentErrorRetry(): Observable<String> =
-        btnErrorRetry.clicks().map { getParam() }
+        btnErrorRetry?.clicks()?.map { getParam() } ?: Observable.never()
 
     override fun intentFavorite(): Observable<Pair<Int, Repo>> =
         repoAdapter.repoFavoriteIntent
@@ -75,9 +81,9 @@ class RepoListFragment : ABaseDataFragment(R.layout.repo_list_fragment), RepoLis
         TimberWrapper.d { "render: $viewModel" }
 
         showLoading(viewModel.loadingState == LoadingState.LOADING)
-        showRefreshingLoading(swipeRefreshLayout, false)
+        showRefreshingLoading(binding.swipeRefreshLayout, false)
         showRetryLoading(viewModel.loadingState == LoadingState.RETRY)
-        showContent(content, viewModel.contentState == ContentState.CONTENT)
+        showContent(binding.content, viewModel.contentState == ContentState.CONTENT)
         showError(viewModel.contentState == ContentState.ERROR)
 
         renderData(viewModel.data)
@@ -89,7 +95,7 @@ class RepoListFragment : ABaseDataFragment(R.layout.repo_list_fragment), RepoLis
     private fun renderData(repoList: List<Repo>?) {
         repoList?.also {
             repoAdapter.data = it.toMutableList()
-            recyclerView.scrollToPosition(0)
+            binding.recyclerView.scrollToPosition(0)
         }
     }
 

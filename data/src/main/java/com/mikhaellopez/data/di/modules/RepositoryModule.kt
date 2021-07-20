@@ -12,7 +12,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 
 /**
- * Copyright (C) 2020 Mikhael LOPEZ
+ * Copyright (C) 2021 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  * Dagger module that provides Repository class.
  */
