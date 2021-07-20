@@ -6,7 +6,7 @@ import android.net.NetworkCapabilities
 import android.os.Build
 
 /**
- * Copyright (C) 2020 Mikhael LOPEZ
+ * Copyright (C) 2021 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  */
 class NetworkChecker(private val context: Context) {

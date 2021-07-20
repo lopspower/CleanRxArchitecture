@@ -1,14 +1,13 @@
 package com.mikhaellopez.presentation.scenes.repolist
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.mikhaellopez.domain.model.Repo
 import com.mikhaellopez.presentation.R
+import com.mikhaellopez.presentation.databinding.RepoItemBinding
 import io.reactivex.rxjava3.subjects.PublishSubject
-import kotlinx.android.synthetic.main.repo_item.view.*
 
 class ReposAdapter : RecyclerView.Adapter<ReposAdapter.ViewHolder>() {
 
@@ -27,23 +26,22 @@ class ReposAdapter : RecyclerView.Adapter<ReposAdapter.ViewHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
-        ViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.repo_item, parent, false))
+        ViewHolder(RepoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) =
         holder.bind(data[position], repoClickIntent, repoFavoriteIntent)
 
     override fun getItemCount() = data.size
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(private val binding: RepoItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(
             repo: Repo,
             repoClickIntent: PublishSubject<Repo>,
             repoFavoriteIntent: PublishSubject<Pair<Int, Repo>>
         ) = with(itemView) {
-
-            textRepoName.text = repo.name
-            textRepoDescription.text = repo.description
-            imageFavoriteRepo.setImageDrawable(
+            binding.textRepoName.text = repo.name
+            binding.textRepoDescription.text = repo.description
+            binding.imageFavoriteRepo.setImageDrawable(
                 ContextCompat.getDrawable(
                     context,
                     if (repo.isFavorite) R.drawable.heart else R.drawable.heart_outline
@@ -51,13 +49,8 @@ class ReposAdapter : RecyclerView.Adapter<ReposAdapter.ViewHolder>() {
             )
 
             setOnClickListener { repoClickIntent.onNext(repo) }
-            imageFavoriteRepo.setOnClickListener {
-                repoFavoriteIntent.onNext(
-                    Pair(
-                        adapterPosition,
-                        repo
-                    )
-                )
+            binding.imageFavoriteRepo.setOnClickListener {
+                repoFavoriteIntent.onNext(Pair(absoluteAdapterPosition, repo))
             }
         }
     }
