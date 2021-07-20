@@ -1,13 +1,15 @@
 package com.mikhaellopez.presentation.scenes.repo
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.jakewharton.rxbinding4.swiperefreshlayout.refreshes
 import com.jakewharton.rxbinding4.view.clicks
 import com.mikhaellopez.data.helper.TimberWrapper
 import com.mikhaellopez.domain.model.Repo
 import com.mikhaellopez.domain.usecases.GetRepo
 import com.mikhaellopez.domain.usecases.RefreshRepo
-import com.mikhaellopez.presentation.R
+import com.mikhaellopez.presentation.databinding.RepoFragmentBinding
 import com.mikhaellopez.presentation.extensions.build
 import com.mikhaellopez.presentation.extensions.getLongArg
 import com.mikhaellopez.presentation.extensions.getStringArg
@@ -15,11 +17,9 @@ import com.mikhaellopez.presentation.scenes.base.view.ABaseDataFragment
 import com.mikhaellopez.presentation.scenes.base.view.ContentState
 import com.mikhaellopez.presentation.scenes.base.view.LoadingState
 import io.reactivex.rxjava3.core.Observable
-import kotlinx.android.synthetic.main.error_layout.*
-import kotlinx.android.synthetic.main.repo_fragment.*
 import javax.inject.Inject
 
-class RepoFragment : ABaseDataFragment(R.layout.repo_fragment), RepoView {
+class RepoFragment : ABaseDataFragment<RepoFragmentBinding>(), RepoView {
 
     companion object {
         private const val ARGS_REPO_ID = "args_repo_id"
@@ -42,6 +42,12 @@ class RepoFragment : ABaseDataFragment(R.layout.repo_fragment), RepoView {
     private val repoName: String by lazy { getStringArg(ARGS_REPO_NAME) }
     private val userName: String by lazy { getStringArg(ARGS_USER_NAME) }
 
+    // View Binding
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> RepoFragmentBinding
+        get() = { inflater, parent, attachToParent ->
+            RepoFragmentBinding.inflate(inflater, parent, attachToParent)
+        }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityComponent.inject(this)
@@ -62,11 +68,12 @@ class RepoFragment : ABaseDataFragment(R.layout.repo_fragment), RepoView {
         Observable.just(GetRepo.Param(repoId, repoName, userName))
 
     override fun intentRefreshData(): Observable<RefreshRepo.Param> =
-        swipeRefreshLayout.refreshes()
+        binding.swipeRefreshLayout.refreshes()
             .map { RefreshRepo.Param(repoId, repoName, userName) }
 
     override fun intentErrorRetry(): Observable<GetRepo.Param> =
-        btnErrorRetry.clicks().map { GetRepo.Param(repoId, repoName, userName) }
+        btnErrorRetry?.clicks()?.map { GetRepo.Param(repoId, repoName, userName) }
+            ?: Observable.never()
 
     override fun intentActionLink(): Observable<Unit> =
         (activity as RepoActivity).intentActionLink
@@ -77,9 +84,9 @@ class RepoFragment : ABaseDataFragment(R.layout.repo_fragment), RepoView {
         TimberWrapper.d { "render: $viewModel" }
 
         showLoading(viewModel.loadingState == LoadingState.LOADING)
-        showRefreshingLoading(swipeRefreshLayout, false)
+        showRefreshingLoading(binding.swipeRefreshLayout, false)
         showRetryLoading(viewModel.loadingState == LoadingState.RETRY)
-        showContent(content, viewModel.contentState == ContentState.CONTENT)
+        showContent(binding.content, viewModel.contentState == ContentState.CONTENT)
         showError(viewModel.contentState == ContentState.ERROR)
 
         renderData(viewModel.data)
@@ -89,8 +96,8 @@ class RepoFragment : ABaseDataFragment(R.layout.repo_fragment), RepoView {
 
     private fun renderData(repo: Repo?) {
         repo?.also {
-            textRepoName.text = it.name
-            textRepoDescription.text = it.description
+            binding.textRepoName.text = it.name
+            binding.textRepoDescription.text = it.description
         }
     }
     //endregion

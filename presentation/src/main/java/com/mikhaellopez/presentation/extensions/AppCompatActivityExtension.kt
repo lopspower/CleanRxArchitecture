@@ -2,7 +2,7 @@ package com.mikhaellopez.presentation.extensions
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.toolbar_layout.*
+import com.mikhaellopez.presentation.R
 
 /**
  * Adds a [Fragment] to this activity's layout.
@@ -14,7 +14,7 @@ fun AppCompatActivity.addFragment(containerViewId: Int, fragment: Fragment) {
 }
 
 fun AppCompatActivity.enableToolbar(enableBack: Boolean = false, title: String? = null) {
-    setSupportActionBar(toolbar)
+    setSupportActionBar(findViewById(R.id.toolbar))
     title?.also { supportActionBar?.title = title }
     if (enableBack) {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
