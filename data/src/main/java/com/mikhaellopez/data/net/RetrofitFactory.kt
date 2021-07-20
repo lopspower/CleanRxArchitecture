@@ -11,7 +11,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * Copyright (C) 2020 Mikhael LOPEZ
+ * Copyright (C) 2021 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  * RetrofitFactory to generate a Retrofit instance.
  * It sets up request logging and a Gson type adapter.

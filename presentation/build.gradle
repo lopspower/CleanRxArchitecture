@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'com.adarshr.test-logger'
@@ -26,6 +25,7 @@ android {
             keyAlias 'alias'
             keyPassword 'password'
             storePassword 'password'
+            enableV3Signing true
         }
     }
     buildTypes {
@@ -47,6 +47,9 @@ android {
             minifyEnabled false
         }
         testBuildType 'debugTest'
+    }
+    buildFeatures {
+        viewBinding true
     }
     lintOptions {
         disable 'ContentDescription'
