@@ -3,6 +3,7 @@ package com.mikhaellopez.presentation.scenes.repolist
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.mikhaellopez.domain.model.Repo
 import com.mikhaellopez.presentation.R
@@ -14,11 +15,14 @@ class ReposAdapter : RecyclerView.Adapter<ReposAdapter.ViewHolder>() {
     val repoClickIntent: PublishSubject<Repo> = PublishSubject.create()
     val repoFavoriteIntent: PublishSubject<Pair<Int, Repo>> = PublishSubject.create()
 
-    var data: MutableList<Repo> = mutableListOf()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private var data: MutableList<Repo> = mutableListOf()
+
+    fun setData(newData: List<Repo>) {
+        val diffResult = DiffUtil.calculateDiff(ReposDiffCallback(data, newData))
+        data.clear()
+        data.addAll(newData)
+        diffResult.dispatchUpdatesTo(this)
+    }
 
     fun setData(position: Int, repo: Repo) {
         data[position] = repo

@@ -37,13 +37,13 @@ class RepoDataRepository(
         repoList.toObservable().flatMapCompletable { saveRepo(it) }
 
     override fun sortListRepo(list: List<Repo>): Single<List<Repo>> =
-        Single.just(list.sortedWith(Comparator { o1, o2 ->
+        Single.just(list.sortedWith { o1, o2 ->
             when {
                 o1.id < o2.id -> 1
                 o1.id == o2.id -> 0
                 else -> -1
             }
-        }))
+        })
     //endregion
 
     //region REPO

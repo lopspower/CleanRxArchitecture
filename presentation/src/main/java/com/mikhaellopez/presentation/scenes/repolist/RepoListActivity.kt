@@ -18,8 +18,8 @@ class RepoListActivity : ABaseActivity<ActivityLayoutToLoadFragmentBinding>() {
     }
 
     // View Binding
-    override val bindingInflater: (LayoutInflater) -> ActivityLayoutToLoadFragmentBinding
-        get() = { inflater -> ActivityLayoutToLoadFragmentBinding.inflate(inflater) }
+    override val bindingInflater: (LayoutInflater) -> ActivityLayoutToLoadFragmentBinding =
+        ActivityLayoutToLoadFragmentBinding::inflate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Make sure this is before calling super.onCreate
