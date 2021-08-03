@@ -1,7 +1,6 @@
 package com.mikhaellopez.data.net
 
 import android.content.Context
-import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.mikhaellopez.data.BuildConfig
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.OkHttpClient
@@ -25,7 +24,6 @@ open class OkHttpClientFactory {
 
 
     private fun OkHttpClient.Builder.enableDebugTools(context: Context) {
-        addInterceptor(StethoInterceptor())
         addInterceptor(ChuckInterceptor(context))
     }
 

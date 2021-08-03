@@ -43,10 +43,8 @@ class RepoFragment : ABaseDataFragment<RepoFragmentBinding>(), RepoView {
     private val userName: String by lazy { getStringArg(ARGS_USER_NAME) }
 
     // View Binding
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> RepoFragmentBinding
-        get() = { inflater, parent, attachToParent ->
-            RepoFragmentBinding.inflate(inflater, parent, attachToParent)
-        }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> RepoFragmentBinding =
+        RepoFragmentBinding::inflate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

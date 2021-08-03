@@ -39,8 +39,8 @@ class RepoActivity : ABaseActivity<ActivityLayoutToLoadFragmentBinding>() {
     internal val intentActionLink = PublishSubject.create<Unit>()
 
     // View Binding
-    override val bindingInflater: (LayoutInflater) -> ActivityLayoutToLoadFragmentBinding
-        get() = { inflater -> ActivityLayoutToLoadFragmentBinding.inflate(inflater) }
+    override val bindingInflater: (LayoutInflater) -> ActivityLayoutToLoadFragmentBinding =
+        ActivityLayoutToLoadFragmentBinding::inflate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

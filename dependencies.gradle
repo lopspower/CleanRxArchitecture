@@ -69,11 +69,8 @@ ext {
 
     // DEBUG
     timberVersion               = '4.7.1'
-    stethoVersion               = '1.6.0'
     chuckVersion                = '1.1.0'
     timber                      = "com.jakewharton.timber:timber:$timberVersion"
-    stetho                      = "com.facebook.stetho:stetho:$stethoVersion"
-    stethoOkHttp                = "com.facebook.stetho:stetho-okhttp3:$stethoVersion"
     chuckDebug                  = "com.readystatesoftware.chuck:library:$chuckVersion"
     chuckRelease                = "com.readystatesoftware.chuck:library-no-op:$chuckVersion"
 
@@ -106,7 +103,6 @@ ext {
     gsonRules                   = proguardFolder + 'gson-rules.pro'
     okhttp3Rules                = proguardFolder + 'okhttp3-rules.pro'
     retrofit2Rules              = proguardFolder + 'retrofit2-rules.pro'
-    stethoRules                 = proguardFolder + 'stetho-rules.pro'
 
     // DEPENDENCY CHECK STRATEGY
     dependencyUpdatesStrategy = {
