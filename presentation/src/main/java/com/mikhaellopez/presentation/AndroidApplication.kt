@@ -2,7 +2,6 @@ package com.mikhaellopez.presentation
 
 import android.app.Application
 import androidx.annotation.VisibleForTesting
-import com.facebook.stetho.Stetho
 import com.mikhaellopez.data.di.components.DaggerDataComponent
 import com.mikhaellopez.data.di.components.DataComponent
 import com.mikhaellopez.presentation.di.components.ApplicationComponent
@@ -24,11 +23,6 @@ class AndroidApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        // Init Stetho
-        if (BuildConfig.DEBUG) {
-            Stetho.initializeWithDefaults(this)
-        }
 
         // Init Debug log
         if (BuildConfig.DEBUG) {

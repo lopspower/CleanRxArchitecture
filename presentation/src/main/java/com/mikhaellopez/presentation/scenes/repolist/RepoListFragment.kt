@@ -29,10 +29,8 @@ class RepoListFragment : ABaseDataFragment<RepoListFragmentBinding>(), RepoListV
     private val repoAdapter = ReposAdapter()
 
     // View Binding
-    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> RepoListFragmentBinding
-        get() = { inflater, parent, attachToParent ->
-            RepoListFragmentBinding.inflate(inflater, parent, attachToParent)
-        }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> RepoListFragmentBinding =
+        RepoListFragmentBinding::inflate
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -94,7 +92,7 @@ class RepoListFragment : ABaseDataFragment<RepoListFragmentBinding>(), RepoListV
 
     private fun renderData(repoList: List<Repo>?) {
         repoList?.also {
-            repoAdapter.data = it.toMutableList()
+            repoAdapter.setData(it)
             binding.recyclerView.scrollToPosition(0)
         }
     }

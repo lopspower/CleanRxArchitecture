@@ -10,18 +10,14 @@ android {
         minSdkVersion androidMinSdkVersion
         testInstrumentationRunner packageAndroidJUnitRunner
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     buildTypes {
         debug {
             minifyEnabled true
-            consumerProguardFiles modelRules, supportRules, apacheRules, gsonRules, okhttp3Rules, retrofit2Rules, stethoRules
+            consumerProguardFiles modelRules, supportRules, apacheRules, gsonRules, okhttp3Rules, retrofit2Rules
         }
         release {
             minifyEnabled true
-            consumerProguardFiles modelRules, supportRules, apacheRules, gsonRules, okhttp3Rules, retrofit2Rules, stethoRules
+            consumerProguardFiles modelRules, supportRules, apacheRules, gsonRules, okhttp3Rules, retrofit2Rules
         }
         // For Android Test
         debugTest {
@@ -39,9 +35,9 @@ dependencies {
     // KOTLIN
     implementation kotlinStdlib
     // SUPPORT
-    implementation androidXCore
+    api androidXCore
     // COMPONENTS
-    implementation room
+    api room
     kapt roomCompiler
     // DAGGER
     implementation dagger
@@ -51,15 +47,14 @@ dependencies {
     implementation rxJava
     implementation rxKotlin
     // WEBSERVICES
-    implementation retrofitConverterGson
-    implementation retrofitAdapterRxJava
+    api retrofitConverterGson
+    api retrofitAdapterRxJava
 
     // DEBUG TOOLS
     implementation timber
-    implementation stethoOkHttp
-    debugImplementation chuckDebug
-    debugTestImplementation chuckRelease
-    releaseImplementation chuckRelease
+    debugApi chuckDebug
+    debugTestApi chuckRelease
+    releaseApi chuckRelease
 
     // TEST
     testImplementation junit
