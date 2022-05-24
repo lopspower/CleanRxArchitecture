@@ -77,10 +77,10 @@ ext {
     // TEST
     junitVersion                = '4.13.2'
     mockitoVersion              = '4.5.1'
-    mockitoKotlinVersion        = '2.2.0'
+    mockitoKotlinVersion        = '4.0.0'
     junit                       = "junit:junit:$junitVersion"
     mockitoInline               = "org.mockito:mockito-inline:$mockitoVersion"
-    mockitoKotlin               = "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
+    mockitoKotlin               = "org.mockito.kotlin:mockito-kotlin:$mockitoKotlinVersion"
 
     // ANDROID TEST
     androidXTestVersion         = '1.4.0'

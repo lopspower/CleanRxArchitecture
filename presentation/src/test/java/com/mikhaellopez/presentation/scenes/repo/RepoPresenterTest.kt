@@ -5,13 +5,13 @@ import com.mikhaellopez.domain.model.Repo
 import com.mikhaellopez.domain.usecases.GetRepo
 import com.mikhaellopez.domain.usecases.RefreshRepo
 import com.mikhaellopez.presentation.exception.ErrorMessageFactoryTest
-import com.nhaarman.mockitokotlin2.*
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.TestScheduler
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.junit.Before
 import org.junit.Test
+import org.mockito.kotlin.*
 
 class RepoPresenterTest {
 

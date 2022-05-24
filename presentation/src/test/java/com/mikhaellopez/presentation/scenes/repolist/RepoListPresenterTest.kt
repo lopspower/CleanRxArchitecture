@@ -7,10 +7,6 @@ import com.mikhaellopez.domain.usecases.GetCacheRepo
 import com.mikhaellopez.domain.usecases.GetListRepo
 import com.mikhaellopez.domain.usecases.RefreshListRepo
 import com.mikhaellopez.presentation.exception.ErrorMessageFactoryTest
-import com.nhaarman.mockitokotlin2.any
-import com.nhaarman.mockitokotlin2.doReturn
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
@@ -19,6 +15,10 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mockito.times
 import org.mockito.Mockito.verify
+import org.mockito.kotlin.any
+import org.mockito.kotlin.doReturn
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 class RepoListPresenterTest {
 
