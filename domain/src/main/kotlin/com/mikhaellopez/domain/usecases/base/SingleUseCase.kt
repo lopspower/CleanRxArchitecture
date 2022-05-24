@@ -3,10 +3,10 @@ package com.mikhaellopez.domain.usecases.base
 import io.reactivex.rxjava3.core.Single
 
 /**
- * Copyright (C) 2021 Mikhael LOPEZ
+ * Copyright (C) 2022 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  */
-abstract class SingleUseCase<R, in P>
+abstract class SingleUseCase<R : Any, in P>
 constructor(
     private val useCaseScheduler: UseCaseScheduler?,
     private val logger: Logger?

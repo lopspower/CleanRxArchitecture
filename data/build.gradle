@@ -26,6 +26,7 @@ android {
         }
         testBuildType 'debugTest'
     }
+    namespace 'com.mikhaellopez.data'
 }
 
 dependencies {

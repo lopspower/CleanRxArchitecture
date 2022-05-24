@@ -3,7 +3,7 @@ package com.mikhaellopez.presentation.di
 import javax.inject.Scope
 
 /**
- * Copyright (C) 2021 Mikhael LOPEZ
+ * Copyright (C) 2022 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  * A scoping annotation to permit objects whose lifetime should conform
  * to the life of the application to be memorized in the correct component.

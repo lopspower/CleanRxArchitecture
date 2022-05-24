@@ -39,7 +39,7 @@ open class RepoDaoTest {
 
         assert(database.repoDao().insert(entity) > 0)
 
-        Maybe.fromCallable { database.repoDao().get(id) }.test()
+        Maybe.fromCallable<RepoEntity> { database.repoDao().get(id) }.test()
             .assertNoErrors()
             .assertValueCount(1)
             .assertValue { it.compareTo(entity) }
@@ -52,14 +52,14 @@ open class RepoDaoTest {
 
         assert(database.repoDao().insert(entity) > 0)
 
-        Maybe.fromCallable { database.repoDao().get(id) }.test()
+        Maybe.fromCallable<RepoEntity> { database.repoDao().get(id) }.test()
             .assertNoErrors()
             .assertValueCount(1)
             .assertValue { it.compareTo(entity) }
 
         assert(database.repoDao().delete(entity) == 1)
 
-        Maybe.fromCallable { database.repoDao().get(id) }.test()
+        Maybe.fromCallable<RepoEntity> { database.repoDao().get(id) }.test()
             .assertNoErrors()
             .assertResult()
     }
@@ -69,7 +69,7 @@ open class RepoDaoTest {
         // Check table is empty
         val id = 1L
 
-        Maybe.fromCallable { database.repoDao().get(id) }.test()
+        Maybe.fromCallable<RepoEntity> { database.repoDao().get(id) }.test()
             .assertResult()
 
         // Insert a repo & select it
@@ -77,7 +77,7 @@ open class RepoDaoTest {
 
         assert(database.repoDao().insert(entity) > 0)
 
-        Maybe.fromCallable { database.repoDao().get(id) }.test()
+        Maybe.fromCallable<RepoEntity> { database.repoDao().get(id) }.test()
             .assertNoErrors()
             .assertValueCount(1)
             .assertValue { it.compareTo(entity) }
@@ -115,17 +115,17 @@ open class RepoDaoTest {
 
         assert(database.repoDao().insert(entity) > 0)
 
-        Maybe.fromCallable { database.repoDao().get(id) }.test()
+        Maybe.fromCallable<RepoEntity> { database.repoDao().get(id) }.test()
             .assertNoErrors()
             .assertValueCount(1)
-            .assertValue { !it!!.isFavorite } // False here
+            .assertValue { !it.isFavorite } // False here
 
         assert(database.repoDao().updateIsFavorite(id, !entity.isFavorite) == 1)
 
-        Maybe.fromCallable { database.repoDao().get(id) }.test()
+        Maybe.fromCallable<RepoEntity> { database.repoDao().get(id) }.test()
             .assertNoErrors()
             .assertValueCount(1)
-            .assertValue { it!!.isFavorite } // True here after update
+            .assertValue { it.isFavorite } // True here after update
     }
 
     private fun RepoEntity?.compareTo(entity: RepoEntity): Boolean =

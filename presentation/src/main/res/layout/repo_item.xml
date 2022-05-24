@@ -44,10 +44,10 @@
         android:layout_height="wrap_content"
         android:padding="8dp"
         android:src="@drawable/heart_outline"
-        android:tint="@color/icons"
         app:layout_constraintBottom_toTopOf="@+id/viewDivider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/icons" />
 
     <View
         android:id="@+id/viewDivider"

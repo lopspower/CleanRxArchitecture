@@ -28,8 +28,8 @@ class RepoPresenter
 
         subscribeViewModel(view, loadRepo, refreshRepo, retryRepo)
 
-        loadRepo.filter { it.data != null }.map { it.data }
-            .switchMap { repo -> view.intentActionLink().map { repo!!.url } }
+        loadRepo.filter { it.data != null }.map { it.data!! }
+            .switchMap { repo -> view.intentActionLink().map { repo.url } }
             .subscribe { router.routeToLink(it) }
             .addTo(composite)
     }
@@ -48,7 +48,7 @@ class RepoPresenter
     private fun retryRepo(getRepoParam: GetRepo.Param): Observable<RepoViewModel> =
         getRepo(getRepoParam)
             .startWithSingle(RepoViewModel.createRetryLoading())
-            .onErrorResumeNext(DelayFunction<RepoViewModel>(scheduler))
+            .onErrorResumeNext(DelayFunction(scheduler))
             .onErrorReturn { onError(it) }
 
     private fun getRepo(getRepoParam: GetRepo.Param): Observable<RepoViewModel> =

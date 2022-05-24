@@ -11,7 +11,7 @@ ext {
     androidVersionName          = '1.0.3'
 
     // ANDROID VERSION
-    androidCompileSdkVersion    = 30
+    androidCompileSdkVersion    = 31
     androidMinSdkVersion        = 19
     androidTargetSdkVersion     = androidCompileSdkVersion
 
@@ -23,13 +23,13 @@ ext {
     kotlinStdlib                = "org.jetbrains.kotlin:kotlin-stdlib:${ext.kotlin_version}"
 
     // ANDROID LIB
-    androidXCoreVersion         = '1.6.0'
-    androidXVersion             = '1.3.0'
-    androidXPreferenceVersion   = '1.1.1'
+    androidXCoreVersion         = '1.7.0'
+    androidXVersion             = '1.4.1'
+    androidXPreferenceVersion   = '1.2.0'
     androidXRecyclerviewVersion = '1.2.1'
     androidXSwipeRefreshVersion = '1.1.0'
-    materialVersion             = '1.4.0'
-    constraintLayoutVersion     = '2.0.4'
+    materialVersion             = '1.6.0'
+    constraintLayoutVersion     = '2.1.4'
     multidexVersion             = '2.0.1'
     androidXCore                = "androidx.core:core:$androidXCoreVersion"
     androidXAppCompat           = "androidx.appcompat:appcompat:$androidXVersion"
@@ -41,18 +41,18 @@ ext {
     multidex                    = "androidx.multidex:multidex:$multidexVersion"
 
     // COMPONENTS
-    roomVersion                 = '2.3.0'
+    roomVersion                 = '2.4.2'
     room                        = "androidx.room:room-runtime:$roomVersion"
     roomCompiler                = "androidx.room:room-compiler:$roomVersion"
 
     // DAGGER
-    daggerVersion               = '2.38'
+    daggerVersion               = '2.42'
     dagger                      = "com.google.dagger:dagger:$daggerVersion"
     daggerCompiler              = "com.google.dagger:dagger-compiler:$daggerVersion"
 
     // RX
     rxAndroidVersion            = '3.0.0'
-    rxJavaVersion               = '3.0.13'
+    rxJavaVersion               = '3.1.4'
     rxKotlinVersion             = '3.0.1'
     rxBindingVersion            = '4.0.0'
     rxAndroid                   = "io.reactivex.rxjava3:rxandroid:$rxAndroidVersion"
@@ -68,7 +68,7 @@ ext {
     retrofitAdapterRxJava       = "com.squareup.retrofit2:adapter-rxjava3:$retrofitVersion"
 
     // DEBUG
-    timberVersion               = '4.7.1'
+    timberVersion               = '5.0.1'
     chuckVersion                = '1.1.0'
     timber                      = "com.jakewharton.timber:timber:$timberVersion"
     chuckDebug                  = "com.readystatesoftware.chuck:library:$chuckVersion"
@@ -76,7 +76,7 @@ ext {
 
     // TEST
     junitVersion                = '4.13.2'
-    mockitoVersion              = '3.11.2'
+    mockitoVersion              = '4.5.1'
     mockitoKotlinVersion        = '2.2.0'
     junit                       = "junit:junit:$junitVersion"
     mockitoInline               = "org.mockito:mockito-inline:$mockitoVersion"

@@ -3,7 +3,7 @@ package com.mikhaellopez.domain.usecases.base
 import org.reactivestreams.Subscriber
 
 /**
- * Copyright (C) 2021 Mikhael LOPEZ
+ * Copyright (C) 2022 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  *
  * Abstract class for a Use Case

@@ -9,7 +9,7 @@ import com.mikhaellopez.presentation.R
 import com.mikhaellopez.presentation.extensions.findViewById
 
 /**
- * Copyright (C) 2021 Mikhael LOPEZ
+ * Copyright (C) 2022 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  */
 abstract class ABaseDataFragment<VB : ViewBinding> : ABaseFragment<VB>() {
