@@ -7,11 +7,11 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 
 /**
- * Copyright (C) 2021 Mikhael LOPEZ
+ * Copyright (C) 2022 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  * Abstract class representing a Presenter in a model view presenter (MVI) pattern.
  */
-abstract class APresenter<in View : LoadDataView<ViewModel>, ViewModel>(private val errorMessageFactory: ErrorMessageFactory) {
+abstract class APresenter<in View : LoadDataView<ViewModel>, ViewModel : Any>(private val errorMessageFactory: ErrorMessageFactory) {
 
     protected val composite = CompositeDisposable()
 

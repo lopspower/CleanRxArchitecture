@@ -9,7 +9,7 @@ import com.mikhaellopez.presentation.di.components.DaggerApplicationComponent
 import timber.log.Timber
 
 /**
- * Copyright (C) 2021 Mikhael LOPEZ
+ * Copyright (C) 2022 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  * Android Main Application
  */

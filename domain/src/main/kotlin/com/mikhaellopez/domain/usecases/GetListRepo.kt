@@ -25,7 +25,7 @@ class GetListRepo
             .flatMap { repoRepository.sortListRepo(it) }
 
         val cacheSingle = getCacheListRepo
-            .map { if (it.isEmpty()) throw NoConnectedException else it }
+            .map { it.ifEmpty { throw NoConnectedException } }
 
         val netSingle = repoRepository.getListRepo(param)
             .flatMap { repoRepository.saveListRepo(it).andThen(getCacheListRepo) }

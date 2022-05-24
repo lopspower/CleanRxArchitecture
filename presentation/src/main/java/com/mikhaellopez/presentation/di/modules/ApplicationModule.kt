@@ -9,7 +9,7 @@ import dagger.Module
 import dagger.Provides
 
 /**
- * Copyright (C) 2021 Mikhael LOPEZ
+ * Copyright (C) 2022 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  * Dagger module that provides context.
  */

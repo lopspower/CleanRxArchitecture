@@ -12,12 +12,12 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/cloud_off_outline"
-        android:tint="@color/icons"
         app:layout_constraintBottom_toTopOf="@+id/textErrorOops"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintVertical_chainStyle="packed"
+        app:tint="@color/icons" />
 
     <TextView
         android:id="@+id/textErrorOops"

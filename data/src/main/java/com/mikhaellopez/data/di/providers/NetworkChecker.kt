@@ -1,18 +1,20 @@
 package com.mikhaellopez.data.di.providers
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 
 /**
- * Copyright (C) 2021 Mikhael LOPEZ
+ * Copyright (C) 2022 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  */
 class NetworkChecker(private val context: Context) {
 
     @Suppress("DEPRECATION")
     val isConnected: Boolean
+        @SuppressLint("MissingPermission")
         get() = (context.getSystemService(Context.CONNECTIVITY_SERVICE) as? ConnectivityManager)?.run {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 getNetworkCapabilities(activeNetwork)?.run {
