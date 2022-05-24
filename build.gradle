@@ -2,17 +2,17 @@
 apply from: 'dependencies.gradle'
 
 buildscript {
-    ext.kotlin_version = '1.5.21'
+    ext.kotlin_version = '1.6.21'
     repositories {
         google()
         mavenCentral()
         gradlePluginPortal()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.0.0'
+        classpath 'com.android.tools.build:gradle:7.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.github.ben-manes:gradle-versions-plugin:0.39.0'
-        classpath 'com.adarshr:gradle-test-logger-plugin:2.0.0'
+        classpath 'com.github.ben-manes:gradle-versions-plugin:0.42.0'
+        classpath 'com.adarshr:gradle-test-logger-plugin:3.2.0'
     }
 }
 

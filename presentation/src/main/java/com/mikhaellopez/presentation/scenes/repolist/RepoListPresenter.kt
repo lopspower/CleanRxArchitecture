@@ -55,7 +55,7 @@ class RepoListPresenter
         getListRepo.execute(userName).toObservable()
             .map { RepoListViewModel.createData(it) }
             .startWithSingle(RepoListViewModel.createRetryLoading())
-            .onErrorResumeNext(DelayFunction<RepoListViewModel>(scheduler))
+            .onErrorResumeNext(DelayFunction(scheduler))
             .onErrorReturn { onError(it) }
 
     private fun favoriteRepo(position: Int, repo: Repo): Observable<RepoListViewModel> =

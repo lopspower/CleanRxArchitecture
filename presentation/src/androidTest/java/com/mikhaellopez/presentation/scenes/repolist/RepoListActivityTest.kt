@@ -1,15 +1,39 @@
 package com.mikhaellopez.presentation.scenes.repolist
 
+import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ApplicationProvider
 import com.mikhaellopez.domain.model.Repo
-import com.mikhaellopez.presentation.extensions.activityTestRule
-import com.mikhaellopez.presentation.extensions.robot
-import org.junit.Rule
+import com.mikhaellopez.presentation.R
+import com.mikhaellopez.presentation.extensions.enableTest
+import com.mikhaellopez.presentation.extensions.getActivity
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 
 class RepoListActivityTest {
 
-    @get:Rule
-    val activityRule = activityTestRule<RepoListActivity>()
+    private lateinit var scenario: ActivityScenario<RepoListActivity>
+
+    private fun robot(func: RepoListRobot.() -> Unit) {
+        getActivity(scenario).also { activity ->
+            val fragment =
+                activity.supportFragmentManager.findFragmentById(R.id.container) as RepoListFragment
+            fragment.presenter.enableTest(fragment)
+            RepoListRobot.robot(func, fragment)
+        }
+    }
+
+    @Before
+    fun setup() {
+        scenario = ActivityScenario.launch(
+            RepoListActivity.newIntent(ApplicationProvider.getApplicationContext())
+        )
+    }
+
+    @After
+    fun cleanup() {
+        scenario.close()
+    }
 
     @Test
     fun showData() {
@@ -24,7 +48,7 @@ class RepoListActivityTest {
             )
         )
 
-        activityRule.robot {
+        robot {
             toolbar()
             loading {
                 content()
@@ -46,7 +70,7 @@ class RepoListActivityTest {
     fun showErrorAndRetry() {
         val myError = "My error"
 
-        activityRule.robot {
+        robot {
             toolbar()
             loading {
                 content()
@@ -68,5 +92,4 @@ class RepoListActivityTest {
             }
         }
     }
-
 }

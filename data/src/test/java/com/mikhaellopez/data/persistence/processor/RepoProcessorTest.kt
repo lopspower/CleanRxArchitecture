@@ -3,13 +3,13 @@ package com.mikhaellopez.data.persistence.processor
 import com.mikhaellopez.data.persistence.dao.RepoDao
 import com.mikhaellopez.data.persistence.entity.RepoEntity
 import com.mikhaellopez.domain.exception.PersistenceException
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 @RunWith(MockitoJUnitRunner::class)
 class RepoProcessorTest {

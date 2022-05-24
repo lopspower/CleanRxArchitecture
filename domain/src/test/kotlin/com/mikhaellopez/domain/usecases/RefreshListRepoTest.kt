@@ -3,14 +3,14 @@ package com.mikhaellopez.domain.usecases
 import com.mikhaellopez.domain.exception.NoConnectedException
 import com.mikhaellopez.domain.model.Repo
 import com.mikhaellopez.domain.repository.RepoRepository
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.mock
+import org.mockito.kotlin.whenever
 
 @RunWith(MockitoJUnitRunner::class)
 class RefreshListRepoTest {

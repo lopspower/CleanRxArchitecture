@@ -4,10 +4,10 @@ import android.content.Context
 import com.google.gson.Gson
 import com.mikhaellopez.data.net.OkHttpClientFactoryTest
 import com.mikhaellopez.data.net.RetrofitFactory
-import com.nhaarman.mockitokotlin2.mock
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.junit.MockitoJUnitRunner
+import org.mockito.kotlin.mock
 
 @RunWith(MockitoJUnitRunner::class)
 class GitHubApiTest {

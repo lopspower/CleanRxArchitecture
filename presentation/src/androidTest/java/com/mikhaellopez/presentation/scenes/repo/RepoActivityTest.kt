@@ -1,15 +1,16 @@
 package com.mikhaellopez.presentation.scenes.repo
 
+import androidx.test.core.app.ActivityScenario
+import androidx.test.core.app.ApplicationProvider
 import com.mikhaellopez.domain.model.Repo
-import com.mikhaellopez.presentation.extensions.activityTestRule
-import com.mikhaellopez.presentation.extensions.robot
-import org.junit.Rule
+import com.mikhaellopez.presentation.R
+import com.mikhaellopez.presentation.extensions.enableTest
+import com.mikhaellopez.presentation.extensions.getActivity
+import org.junit.After
+import org.junit.Before
 import org.junit.Test
 
 class RepoActivityTest {
-
-    @get:Rule
-    val activityRule = activityTestRule<RepoActivity>()
 
     private val repo = Repo(
         1,
@@ -20,9 +21,37 @@ class RepoActivityTest {
         "userName"
     )
 
+    private lateinit var scenario: ActivityScenario<RepoActivity>
+
+    private fun robot(func: RepoRobot.() -> Unit) {
+        getActivity(scenario).also { activity ->
+            val fragment =
+                activity.supportFragmentManager.findFragmentById(R.id.container) as RepoFragment
+            fragment.presenter.enableTest(fragment)
+            RepoRobot.robot(func, fragment)
+        }
+    }
+
+    @Before
+    fun setup() {
+        scenario = ActivityScenario.launch(
+            RepoActivity.newIntent(
+                ApplicationProvider.getApplicationContext(),
+                repo.id,
+                repo.name,
+                repo.userName
+            )
+        )
+    }
+
+    @After
+    fun cleanup() {
+        scenario.close()
+    }
+
     @Test
     fun showData() {
-        activityRule.robot(repo) {
+        robot {
             toolbar(repo.name)
             loading {
                 content()
@@ -44,7 +73,7 @@ class RepoActivityTest {
     fun showErrorAndRetry() {
         val myError = "My error"
 
-        activityRule.robot(repo) {
+        robot {
             toolbar(repo.name)
             loading {
                 content()

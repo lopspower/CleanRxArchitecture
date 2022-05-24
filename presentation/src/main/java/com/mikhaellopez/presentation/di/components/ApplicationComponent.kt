@@ -9,7 +9,7 @@ import dagger.BindsInstance
 import dagger.Component
 
 /**
- * Copyright (C) 2021 Mikhael LOPEZ
+ * Copyright (C) 2022 Mikhael LOPEZ
  * Licensed under the Apache License Version 2.0
  * A component whose lifetime is the life of the application.
  */
