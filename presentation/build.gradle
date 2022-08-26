@@ -1,8 +1,10 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'com.github.ben-manes.versions'
-apply plugin: 'com.adarshr.test-logger'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.github.ben-manes.versions'
+    id 'com.adarshr.test-logger'
+}
 
 android {
     compileSdkVersion androidCompileSdkVersion
@@ -15,14 +17,6 @@ android {
         versionName androidVersionName
         multiDexEnabled true
         testInstrumentationRunner packageAndroidJUnitRunner
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_11
-        targetCompatibility JavaVersion.VERSION_11
-    }
-    java {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
     }
     signingConfigs {
         release {
@@ -53,6 +47,13 @@ android {
         }
         testBuildType 'debugTest'
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
     buildFeatures {
         viewBinding true
     }
@@ -66,11 +67,8 @@ dependencies {
     implementation project(':data')
     implementation project(':domain')
 
-    // KOTLIN
-    implementation kotlinStdlib
     // ANDROIDX
     implementation androidXAppCompat
-    implementation androidXPreference
     implementation androidXRecyclerView
     implementation androidXSwipeRefresh
     implementation materialDesign
@@ -100,7 +98,6 @@ dependencies {
     androidTestImplementation espressoCore
     androidTestImplementation espressoIntents
     androidTestImplementation espressoContrib
-    androidTestImplementation 'androidx.test.ext:junit-ktx:1.1.3'
 
     // DEPENDENCY CHECK STRATEGY
     dependencyUpdates.resolutionStrategy dependencyUpdatesStrategy

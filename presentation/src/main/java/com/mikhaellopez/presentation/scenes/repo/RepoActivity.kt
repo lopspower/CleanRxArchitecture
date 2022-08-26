@@ -58,7 +58,7 @@ class RepoActivity : ABaseActivity<ActivityLayoutToLoadFragmentBinding>() {
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.repo_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }

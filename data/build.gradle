@@ -1,11 +1,14 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'com.github.ben-manes.versions'
-apply plugin: 'com.adarshr.test-logger'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'com.github.ben-manes.versions'
+    id 'com.adarshr.test-logger'
+}
 
 android {
     compileSdkVersion androidCompileSdkVersion
+    namespace 'com.mikhaellopez.data'
     defaultConfig {
         minSdkVersion androidMinSdkVersion
         testInstrumentationRunner packageAndroidJUnitRunner
@@ -26,7 +29,13 @@ android {
         }
         testBuildType 'debugTest'
     }
-    namespace 'com.mikhaellopez.data'
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
@@ -34,7 +43,7 @@ dependencies {
     implementation project(':domain')
 
     // KOTLIN
-    implementation kotlinStdlib
+    //implementation kotlinStdlib
     // SUPPORT
     api androidXCore
     // COMPONENTS

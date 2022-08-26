@@ -32,7 +32,7 @@ abstract class ABaseActivity<VB : ViewBinding> : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         // Handle toolbar back arrow click here
         if (item.itemId == android.R.id.home) {
-            onBackPressed()
+           finish()
         }
         return super.onOptionsItemSelected(item)
     }
