@@ -1,8 +1,8 @@
 package com.mikhaellopez.data.net
 
 import android.content.Context
+import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.mikhaellopez.data.BuildConfig
-import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.OkHttpClient
 import java.util.concurrent.TimeUnit
 
@@ -24,7 +24,7 @@ open class OkHttpClientFactory {
 
 
     private fun OkHttpClient.Builder.enableDebugTools(context: Context) {
-        addInterceptor(ChuckInterceptor(context))
+        addInterceptor(ChuckerInterceptor.Builder(context).build())
     }
 
     private fun OkHttpClient.Builder.updateTimeout(read: Long = 60, write: Long = 60) {

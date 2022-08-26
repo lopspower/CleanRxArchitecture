@@ -42,8 +42,6 @@ dependencies {
     // MODULE
     implementation project(':domain')
 
-    // KOTLIN
-    //implementation kotlinStdlib
     // SUPPORT
     api androidXCore
     // COMPONENTS
@@ -62,9 +60,9 @@ dependencies {
 
     // DEBUG TOOLS
     implementation timber
-    debugApi chuckDebug
-    debugTestApi chuckRelease
-    releaseApi chuckRelease
+    debugImplementation chuckerDebug
+    debugTestImplementation chuckerRelease
+    releaseImplementation chuckerRelease
 
     // TEST
     testImplementation junit

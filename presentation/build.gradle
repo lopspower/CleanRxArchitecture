@@ -54,6 +54,11 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    configurations {
+        all {
+            exclude group: 'androidx.lifecycle', module: 'lifecycle-viewmodel-ktx'
+        }
+    }
     buildFeatures {
         viewBinding true
     }
